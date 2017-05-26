@@ -1,0 +1,57 @@
+<!Doctype html>  
+<html lang="en">  
+
+<head>  
+<meta http-equiv=Content-Type content="text/html" charset="utf-8">  
+<!-- 引入支持库文件 -->  
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+
+
+
+
+<title>查询条件</title>  
+
+</head>
+
+
+
+
+
+<body>
+<input type="button" name="addCond" value="增加条件" onClick="addCond()"></input>
+
+<div class= "conds" style="background-color:#00F">
+	<div class="cond">
+        <select type="select" name="field"  >
+          <option>字段1</option>
+          <option>字段2</option>
+          <option>字段3</option>
+          <option>字段4</option>
+        </select>
+        
+        <select type="select" name="operator"  >
+          <option>等于</option>
+          <option>大于</option>
+          <option>小于</option>
+          <option>包含</option>
+        </select>
+        
+        <input type="text" name="fieldValue" ng-model="name">
+	</div>
+</div>
+
+<br/><br/><br/>
+<div class="buttons" style="float:right">
+<button onClick="search()">查询</button>
+<button onClick="window.close()">取消</button>
+</div>
+
+</body>
+<script type="text/jscript"> 
+function addCond(){
+	var cond = $(".cond")[0];
+	$(".conds").append(cond);
+	}
+
+</script>
+</html>  

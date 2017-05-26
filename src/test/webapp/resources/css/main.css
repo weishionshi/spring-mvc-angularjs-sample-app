@@ -1,0 +1,21 @@
+@charset "utf-8";
+body { 
+	font-family:Verdana; 
+	font-size:14px; 
+	margin:0;
+}
+
+.top-menu { 
+	height:50px; 
+	background-color:#6cf; 
+	margin-bottom:5px;
+}
+
+
+.level2-menu { 
+	float:left; 
+	width:60px; 
+	height:500px; 
+	background-color:#9ff;
+}
+

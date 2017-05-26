@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
  
 <div class="top-menu">
 	<strong>This is top menu</strong>
@@ -13,27 +14,53 @@
 </div> 
 
 <div class="level2-menu">
-<strong>This is level2 menu</strong>
+<strong>
+<div ng-repeat = "menu in menus">
+<a href="#" style="margin-top: 20px;margin-bottom: 20px;border: 2px;border-style: solid;font-size: 25px">{{menu}}</a>
+</div>
+</strong>
 </div> 
  
-<div ng-app="myApp" ng-controller="myCtrl">
+<div>
 
 名: <input type="text" ng-model="firstName"><br>
 姓: <input type="text" ng-model="lastName"><br>
 <br>
 
 
+<input type="date" value="2015-09-24"/>
+
 	<button type="button" class="btn btn-default btn-sm" ng-click="toggle()">
           <span class="glyphicon glyphicon-list-alt"></span> 高级
     </button>
 </div>
 
+
+
+<div class="query_cond" ng-show="showCond">
+<input type="radio" name="logic" value="1">全部满足
+<input type="radio" name="logic" value="2" checked="checked">任一满足
+<button class="btn btn-default btn-sm" style="position: absolute;right: 50px;top: 10px">新增条件</button>
+<button class="btn btn-default btn-sm" style="position: absolute;right: 120px;bottom: 30px">搜索</button>
+<button class="btn btn-default btn-sm" style="position: absolute;right: 50px;bottom: 30px">取消</button>
+
+</div>
+
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', ['$scope','$window',function($scope,$window) {
-    $scope.toggle = function(){
-		$window.open("./public/query_cond/query_cond.html","_blank","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, titlebar=no, copyhistory=yes, width=400, height=400,left=100, top=100 ");
+	$scope.menus = [];
+	for(i=0;i<10;i++){
+		$scope.menus[i] ="menu"+i.toString();
+		console.log($scope.menus[i]);
 		}
+
+    $scope.toggle = function(){
+		/*$window.open("./public/query_cond/query_cond.html","_blank","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, titlebar=no, copyhistory=yes, width=400, height=400,left=100, top=100 ");*/
+		$scope.showCond = !$scope.showCond;
+		}
+
+
 }]);
 </script>
  

@@ -41,7 +41,7 @@ The angular module [angular-messages](https://egghead.io/lessons/angularjs-intro
 
 ### Backend Overview ###
 
-The backend is based on Java 8, Spring 4, JPA 2/ Hibernate 4. The Spring configuration is based on Java. The main Spring modules used where Spring MVC and Spring Security. The backend was built using the DDD approach, which includes a domain model, services, repositories and DTOs for frontend/backend data transfer. 
+The backend is based on Java 8, Spring 4, JPA 2/ Hibernate 4. The Spring configuration is based on Java. The main Spring modules used where Spring MVC and Spring Security. The backend was built using the DDD(Domain-Driven Design) approach, which includes a domain model, services, repositories and DTOs for frontend/backend data transfer. 
 
 The REST web services are based on Spring MVC and JSON. The unit tests are made with spring test and the REST API functional tests where made using [Spring test MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/testing.html#spring-mvc-test-framework).
 

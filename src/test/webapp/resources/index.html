@@ -1,5 +1,5 @@
 <!Doctype html>  
-<html lang="en">  
+<html>
 
 <head>  
 
@@ -12,40 +12,63 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-<!-- 引入支持库文件
-<script type="text/javascript" src="../../temp/mxClient.js"></script>
 
-<script type="text/javascript" src="../../../main/webapp/resources/bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="../../../main/webapp/resources/bower_components/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="../../../main/webapp/resources/bower_components/angular-resource/angular-resource.min.js"></script>
---> 
 
+<style type="text/css">
+	.queryConds{
+		width: 600px; 
+		background-color: #E0E0E0;
+		border-style: solid;
+		border-width: 2px;
+
+	}
+
+	.queryDSL{
+		width: 600px;
+		background-color: #E0E0E0;
+		border-style: solid;
+		border-width: 2px;
+
+
+	}
+
+	.inputDSL{
+		width: 500px;
+		overflow-y:visible;
+	}
+
+</style>
 </head>
 
 
 <body ng-app="myApp" ng-controller="myCtrl">
-<div class="top-menu">
-	<strong>This is top menu</strong>
-	
-</div> 
 
-<div class="level2-menu">
-<strong>This is level2 menu</strong>
+<div class="queryType">
+	<input type="radio" name="queryType.comp" ng-model="queryType" ng-value="true" ng-checked="true" ng-init="queryType=true"/>组合条件
+	<input type="radio" name="queryType.DSL" ng-model="queryType" ng-value="false" />DSL语句
+	
+</div>
+
+<div id="div1" class="queryConds" ng-show="queryType" >
+	<button class="btn btn-default btn-sm" ng-click="addCond()">新增</button>
+	<button class="btn btn-default btn-sm" ng-click="delAllCond()">删除所有</button>
+	<div ng-repeat="cond in conds">
+		<select ng-model="cond.name" ng-options="field for field in fields"></select>
+		<select ng-model="selectedOper" ng-options= "oper for oper in opers"></select>
+		<input type="text" ng-model="cond.value" />
+		<a ng-show="$index!=0" style="color:red;font-size:11px" ng-click="delCond($index)">删除</a>
+	</div>
+
+	<button class="btn btn-default btn-sm " ng-click="search()">搜索</button>	
 </div>
 
 
-
-<label>Name：</label>
-	<input type="text" name="name" ng-model="name">
-    {{firstName}}
-    <br/>
-	<button type="button" class="btn btn-default btn-sm" ng-click="toggle()">
-          <span class="glyphicon glyphicon-list-alt"></span> 高级
-    </button>
-
+<div class="queryDSL" ng-show="!queryType" >
+请输入DSL：<textarea class="inputDSL" name="inputDSL" ng-model="inputDSL"> </textarea>
+</div>
 
 </body>
 
+<script type="text/javascript" src="./index.js"></script>
 
-<script language="text/javascript" src="index.js"></script>
 </html>  

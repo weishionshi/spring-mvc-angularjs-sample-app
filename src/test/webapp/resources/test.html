@@ -6,6 +6,10 @@
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="css/main.css">
 </head>
+
+
+
+
 <body ng-app="myApp" ng-controller="myCtrl">
  
 <div class="top-menu">
@@ -37,6 +41,21 @@
 
 
 
+<div class="queryType">
+	<input type="radio" name="queryType.comp" ng-model="queryType" ng-value="true" ng-checked="true" ng-init="queryType=true"/>组合条件
+	<input type="radio" name="queryType.DSL" ng-model="queryType" ng-value="false" />DSL语法
+	{{queryType}}
+</div>
+
+<div class="queryConds" ng-show="queryType" style="width:600px; background-color: #6cf">
+组合条件
+</div>
+
+
+<div class="queryDSL" ng-show="!queryType" style="width: 600px; background-color: #005AB5">
+DSL
+</div>
+
 <div class="query_cond" ng-show="showCond">
 <input type="radio" name="logic" value="1">全部满足
 <input type="radio" name="logic" value="2" checked="checked">任一满足
@@ -59,6 +78,8 @@ app.controller('myCtrl', ['$scope','$window',function($scope,$window) {
 		/*$window.open("./public/query_cond/query_cond.html","_blank","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, titlebar=no, copyhistory=yes, width=400, height=400,left=100, top=100 ");*/
 		$scope.showCond = !$scope.showCond;
 		}
+
+		console.log($scope.queryType);
 
 
 }]);

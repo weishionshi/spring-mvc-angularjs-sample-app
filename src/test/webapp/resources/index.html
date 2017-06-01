@@ -44,18 +44,29 @@
 <body ng-app="myApp" ng-controller="myCtrl">
 
 <div class="queryType">
-	<input type="radio" name="queryType.comp" ng-model="queryType" ng-value="true" ng-checked="true" ng-init="queryType=true"/>组合条件
-	<input type="radio" name="queryType.DSL" ng-model="queryType" ng-value="false" />DSL语句
+	<input type="radio" name="queryType" ng-model="queryType" ng-value="comp" ng-checked="true" ng-init="queryType='comp'"/>组合条件
+	<input type="radio" name="queryType" ng-model="queryType" ng-value="DSL" />DSL语句
 	
 </div>
 
-<div id="div1" class="queryConds" ng-show="queryType" >
+<div id="div1" class="queryConds" ng-show="queryType=='comp' " >
+
 	<button class="btn btn-default btn-sm" ng-click="addCond()">新增</button>
 	<button class="btn btn-default btn-sm" ng-click="delAllCond()">删除所有</button>
+    <br><br>
+    
+    <div class="logicOper">
+        <label>条件逻辑：</label>
+        <input type="radio" name="logicOper" ng-model="logicOper" value="AND" ng-checked="true" ng-init="logicOper='AND'"/>全部满足
+        <input type="radio" name="logicOper" ng-model="logicOper" value="OR"/>任一满足  
+        
+	</div>
+    
 	<div ng-repeat="cond in conds">
-		<select ng-model="cond.name" ng-options="field for field in fields"></select>
-		<select ng-model="selectedOper" ng-options= "oper for oper in opers"></select>
-		<input type="text" ng-model="cond.value" />
+		<select ng-model="cond.fieldName" ng-options="field for field in fields"></select>
+		<select ng-model="cond.selectedOper" ng-options= "oper.id as oper.name for oper in opers"></select>
+
+		<input type="text" ng-model="cond.fieldValue" />
 		<a ng-show="$index!=0" style="color:red;font-size:11px" ng-click="delCond($index)">删除</a>
 	</div>
 
@@ -63,7 +74,7 @@
 </div>
 
 
-<div class="queryDSL" ng-show="!queryType" >
+<div class="queryDSL" ng-show="queryType=='DSL' " >
 请输入DSL：<textarea class="inputDSL" name="inputDSL" ng-model="inputDSL"> </textarea>
 </div>
 

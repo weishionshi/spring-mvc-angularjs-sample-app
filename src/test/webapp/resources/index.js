@@ -1,19 +1,29 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', ['$scope','$window','$compile',function($scope,$window,$compile) {
+	const MAXCOND=10;
     $scope.cond = {};
-    $scope.fields = ["timestamp","id","level","application","message"];//TO-DO:次数组的值通过调用es接口获取
-    $scope.opers = ["等于","不等于","大于","小于"];
-	$scope.conds = [{name:"name",value:"John"},{name:"name",value:"Allen"}];
- //    var cond = "<select> <option value ='volvo'>Volvo</option></select>"
- //    var template = angular.element(cond);
- //    var mobileDialogElement = $compile(template)($scope);
-	// angular.element("#div1").append(mobileDialogElement);
-    //conds.push(template);
+    $scope.fields = ["timestamp","id","level","application","message"];//TO-DO:此数组的值通过调用es接口获取
+    $scope.opers = [{id:0,name:"等于",oper:"==="},
+					{id:1,name:"不等于",oper:"!=="},
+					{id:2,name:"包含",oper:""},
+					{id:3,name:"不包含",oper:""},
+					{id:4,name:"大于",oper:">"},
+					{id:5,name:"小于",oper:"<"},
+					{id:6,name:"大于等于",oper:">="},
+					{id:7,name:"小于等于",oper:"<="},];
+	$scope.conds = [{fieldName:"level",selectedOper:0,fieldValue:"ERROR"}];
+
 
     $scope.addCond=function(){
-    var obj={};
+    
     if(!$scope.conds){$scope.conds=[]};
-    $scope.conds.push(obj);
+	if($scope.conds.length>=MAXCOND){
+		alert("最多只能输入"+MAXCOND+"个条件");
+		}else{
+			var obj={};
+			$scope.conds.push(obj);
+			}
+    
 	}
 
 	$scope.delCond=function(idx){
